@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico VIDA proteção global · Ivan Vianna CFP®</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --verde:   #1A3C2E;
+  --verde2:  #2E5C46;
+  --verde3:  #3d7558;
+  --dourado: #f8e38c;
+  --dmed:    #d7ae4d;
+  --dscuro:  #a8862a;
+  --branco:  #FFFFFF;
+  --creme:   #FAF7F2;
+  --texto:   #1A1A1A;
+  --sub:     #4a4a4a;
+  --escuro:  #0F2620;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--creme);
+  color: var(--texto);
+}
+.wrap { max-width: 680px; margin: 0 auto; padding: 0 0 60px; }
+
+/* ── HERO ─────────────────────────────────── */
+.hero {
+  background: var(--verde);
+  padding: 52px 40px 44px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 360px; height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(248,227,140,.05) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--dourado) 0%, var(--dmed) 40%, transparent 100%);
+}
+.hero-kicker {
+  font-size: 0.70rem;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: rgba(248,227,140,0.65);
+  margin-bottom: 20px;
+}
+.hero-titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.60rem;
+  font-weight: 600;
+  color: var(--branco);
+  line-height: 1.10;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+.hero-titulo em {
+  color: var(--dourado);
+  font-style: italic;
+}
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.10rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.55;
+  max-width: 480px;
+  margin-bottom: 32px;
+}
+.hero-meta {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+}
+.hero-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.74rem;
+  color: rgba(248,227,140,0.70);
+  font-weight: 500;
+  margin-right: 28px;
+  margin-bottom: 8px;
+}
+.hero-meta-dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--dmed);
+  flex-shrink: 0;
+}
+
+/* ── DECLARAÇÃO CENTRAL ────────────────────── */
+.declaracao {
+  background: var(--escuro);
+  padding: 44px 40px;
+}
+.declaracao-txt {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.45;
+  margin-bottom: 28px;
+  letter-spacing: -0.01em;
+}
+.declaracao-txt strong {
+  font-weight: 600;
+  font-style: normal;
+  color: var(--dourado);
+}
+.declaracao-para {
+  font-size: 0.86rem;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.65;
+  max-width: 480px;
+}
+
+/* ── O QUE É ───────────────────────────────── */
+.oque {
+  padding: 44px 40px;
+  background: var(--creme);
+}
+.oque-kicker {
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--verde3);
+  margin-bottom: 18px;
+}
+.oque-titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.80rem;
+  font-weight: 600;
+  color: var(--verde);
+  line-height: 1.20;
+  margin-bottom: 20px;
+}
+.oque-corpo {
+  font-size: 0.90rem;
+  color: var(--sub);
+  line-height: 1.70;
+  margin-bottom: 32px;
+  max-width: 520px;
+}
+
+/* ── ESTRUTURA DA SESSÃO ───────────────────── */
+.sessao {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.sessao-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(26,60,46,0.10);
+}
+.sessao-item:last-child { border-bottom: none; }
+.sessao-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.50rem;
+  font-weight: 600;
+  color: rgba(26,60,46,0.18);
+  flex-shrink: 0;
+  width: 32px;
+  line-height: 1;
+  margin-top: 2px;
+}
+.sessao-txt h4 {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--verde);
+  margin-bottom: 4px;
+}
+.sessao-txt p {
+  font-size: 0.80rem;
+  color: var(--sub);
+  line-height: 1.55;
+}
+.sessao-tempo {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--dscuro);
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+/* ── POR IDENTIDADE ────────────────────────── */
+.identidades {
+  background: var(--branco);
+  padding: 44px 40px;
+  border-top: 1px solid #E8E4DC;
+}
+.identidades-kicker {
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--verde3);
+  margin-bottom: 18px;
+}
+.identidades-titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: var(--verde);
+  line-height: 1.22;
+  margin-bottom: 28px;
+}
+.id-item {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(26,60,46,0.08);
+}
+.id-item:last-child { border-bottom: none; }
+.id-nome {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--dourado);
+  background: var(--verde);
+  display: inline-block;
+  padding: 3px 12px 4px;
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+.id-foco {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--verde3);
+  margin-bottom: 6px;
+}
+.id-linhas {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+.id-linha {
+  font-size: 0.82rem;
+  color: var(--sub);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  line-height: 1.45;
+}
+.id-linha::before {
+  content: '—';
+  color: var(--dmed);
+  flex-shrink: 0;
+  font-size: 0.70rem;
+}
+.id-plano {
+  font-size: 0.80rem;
+  font-style: italic;
+  color: var(--verde2);
+  margin-top: 8px;
+  line-height: 1.50;
+  padding-left: 16px;
+  border-left: 2px solid rgba(215,174,77,0.40);
+}
+
+/* ── ENTREGÁVEL VISUAL ─────────────────────── */
+.entregavel {
+  background: var(--escuro);
+  padding: 44px 40px;
+}
+.entregavel-kicker {
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(248,227,140,0.90);
+  margin-bottom: 18px;
+}
+.entregavel-titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.80rem;
+  font-weight: 600;
+  color: var(--dourado);
+  line-height: 1.15;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+.entregavel-desc {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.65;
+  max-width: 480px;
+  margin-bottom: 28px;
+}
+.entregavel-eixos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.entregavel-eixo {
+  padding: 14px 16px;
+  border: 1px solid rgba(248,227,140,0.12);
+  border-radius: 4px;
+}
+.entregavel-eixo-nome {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(248,227,140,0.90);
+  margin-bottom: 4px;
+}
+.entregavel-eixo-desc {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.45;
+}
+
+/* ── INVESTIMENTO + CTA ────────────────────── */
+.investimento {
+  background: var(--branco);
+  padding: 44px 40px;
+  border-top: 1px solid #E8E4DC;
+}
+.inv-kicker {
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--verde3);
+  margin-bottom: 18px;
+}
+.inv-valor {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.20rem;
+  font-weight: 600;
+  color: var(--verde);
+  line-height: 1;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+.inv-desc {
+  font-size: 0.82rem;
+  color: var(--sub);
+  line-height: 1.60;
+  margin-bottom: 28px;
+  max-width: 400px;
+}
+.inv-btn {
+  display: inline-block;
+  background: var(--verde);
+  color: var(--dourado);
+  padding: 18px 36px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.90rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  transition: all .2s ease;
+  margin-bottom: 16px;
+}
+.inv-btn:hover {
+  background: var(--verde2);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(26,60,46,.20);
+}
+.inv-nota {
+  font-size: 0.74rem;
+  color: rgba(0,0,0,0.65);
+  line-height: 1.55;
+  max-width: 380px;
+}
+
+/* ── SOBRE IVAN ────────────────────────────── */
+.sobre {
+  background: var(--creme);
+  padding: 36px 40px;
+  border-top: 1px solid #E8E4DC;
+}
+.sobre-nome {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.20rem;
+  font-weight: 600;
+  color: var(--verde);
+  margin-bottom: 6px;
+}
+.sobre-titulo {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--verde3);
+  margin-bottom: 14px;
+}
+.sobre-corpo {
+  font-size: 0.84rem;
+  color: var(--sub);
+  line-height: 1.65;
+  max-width: 500px;
+}
+
+/* ── ASSINATURA ────────────────────────────── */
+.assinatura {
+  padding: 16px 40px;
+  background: var(--verde2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.ass-marca {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.90rem;
+  font-weight: 600;
+  color: var(--branco);
+}
+.ass-info {
+  font-size: 0.68rem;
+  color: rgba(248,227,140,0.70);
+}
+.disc {
+  padding: 10px 40px 6px;
+  font-size: 0.65rem;
+  color: #777;
+  line-height: 1.5;
+  text-align: center;
+  background: var(--creme);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .hero, .declaracao, .oque, .identidades, .entregavel, .investimento, .sobre { padding-left: 24px; padding-right: 24px; }
+  .hero-titulo { font-size: 2.00rem; }
+  .inv-valor { font-size: 2.60rem; }
+  .entregavel-eixos { grid-template-columns: 1fr; }
+  .assinatura, .disc { padding-left: 24px; padding-right: 24px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-kicker">Ivan Vianna CFP® · Método VIDA®</div>
+    <div class="hero-titulo">Diagnóstico VIDA<br><em>Proteção Global</em></div>
+    <div class="hero-sub">Uma sessão estratégica de 60 minutos para mapear sua exposição global, identificar onde o patrimônio está vulnerável e definir prioridades concretas de proteção.</div>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><div class="hero-meta-dot"></div> 60 minutos ao vivo</div>
+      <div class="hero-meta-item"><div class="hero-meta-dot"></div> Mapa de Exposição Global</div>
+      <div class="hero-meta-item"><div class="hero-meta-dot"></div> Plano de prioridades</div>
+    </div>
+  </div>
+
+  <!-- DECLARAÇÃO -->
+  <div class="declaracao">
+    <div class="declaracao-txt">O scanner revelou onde você está.<br><strong>O diagnóstico revela o que está em risco — e o que proteger primeiro.</strong></div>
+    <div class="declaracao-para">Não é consultoria genérica. Não é relatório técnico. É uma leitura estratégica calibrada para o seu perfil — exposição cambial, risco-Brasil, mobilidade patrimonial, sucessão internacional e adequação à legislação vigente.</div>
+  </div>
+
+  <!-- O QUE É -->
+  <div class="oque">
+    <div class="oque-kicker">A sessão</div>
+    <div class="oque-titulo">60 minutos. Cirúrgicos.</div>
+    <div class="oque-corpo">A reunião não tenta resolver tudo. Resolve o essencial: clareza sobre a natureza real do problema patrimonial — que quase sempre é diferente do problema percebido.</div>
+
+    <div class="sessao">
+      <div class="sessao-item">
+        <div class="sessao-num">1</div>
+        <div class="sessao-txt">
+          <h4>Identidade patrimonial detectada</h4>
+          <p>Revisão do estágio identificado pelo scanner e confirmação do contexto real — patrimônio, estrutura existente, vínculos internacionais.</p>
+          <div class="sessao-tempo">5 min</div>
+        </div>
+      </div>
+      <div class="sessao-item">
+        <div class="sessao-num">2</div>
+        <div class="sessao-txt">
+          <h4>Onde está a vulnerabilidade invisível</h4>
+          <p>Leitura das fragilidades prioritárias — cambial, jurisdicional, sucessória, de liquidez e mobilidade — com base no perfil identificado.</p>
+          <div class="sessao-tempo">15 min</div>
+        </div>
+      </div>
+      <div class="sessao-item">
+        <div class="sessao-num">3</div>
+        <div class="sessao-txt">
+          <h4>O que está desalinhado</h4>
+          <p>Diagnóstico direto: o que existe na estrutura atual que contradiz os objetivos de proteção, continuidade e mobilidade patrimonial.</p>
+          <div class="sessao-tempo">15 min</div>
+        </div>
+      </div>
+      <div class="sessao-item">
+        <div class="sessao-num">4</div>
+        <div class="sessao-txt">
+          <h4>Plano de prioridades</h4>
+          <p>Três horizontes de ação: movimento imediato, ajustes em 90 dias, e o que exige arquitetura estrutural de longo prazo.</p>
+          <div class="sessao-tempo">15 min</div>
+        </div>
+      </div>
+      <div class="sessao-item">
+        <div class="sessao-num">5</div>
+        <div class="sessao-txt">
+          <h4>O que merece aprofundamento</h4>
+          <p>Identificação clara do que vai além do diagnóstico — e como a implementação aprofundada funciona dentro do Método VIDA.</p>
+          <div class="sessao-tempo">10 min</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POR IDENTIDADE -->
+  <div class="identidades">
+    <div class="identidades-kicker">Calibrado por estágio</div>
+    <div class="identidades-titulo">O diagnóstico é o mesmo. O foco muda com a identidade.</div>
+
+    <div class="id-item">
+      <div class="id-nome">Prisioneiro do Real</div>
+      <div class="id-foco">Foco da sessão</div>
+      <div class="id-linhas">
+        <div class="id-linha">Exposição total ao Brasil — câmbio, risco político, concentração</div>
+        <div class="id-linha">Ausência de mobilidade patrimonial estruturada</div>
+        <div class="id-linha">Vulnerabilidade de liquidez em moeda forte</div>
+        <div class="id-linha">Janela de internacionalização — o que ainda está aberto</div>
+      </div>
+      <div class="id-plano">Plano: primeiro movimento real, redução de dependência local, proteção cambial mínima.</div>
+    </div>
+
+    <div class="id-item">
+      <div class="id-nome">Diversificação Cosmética</div>
+      <div class="id-foco">Foco da sessão</div>
+      <div class="id-linhas">
+        <div class="id-linha">Ativos internacionais sem integração estratégica</div>
+        <div class="id-linha">Falsa sensação de proteção — o risco mais caro</div>
+        <div class="id-linha">Ausência de estrutura sucessória além-fronteira</div>
+        <div class="id-linha">Exposição oculta não quantificada</div>
+      </div>
+      <div class="id-plano">Plano: reorganização estrutural, revisão proporcional, desenho de mobilidade real.</div>
+    </div>
+
+    <div class="id-item">
+      <div class="id-nome">Patrimônio em Transição</div>
+      <div class="id-foco">Foco da sessão</div>
+      <div class="id-linhas">
+        <div class="id-linha">Exposição à estate tax americana em ativos sem estrutura</div>
+        <div class="id-linha">Adequação à Lei 14.754/2023 — o que mudou e o que precisa mudar</div>
+        <div class="id-linha">Sucessão multijurisdicional não integrada</div>
+        <div class="id-linha">Estrutura que envelhece sem revisão</div>
+      </div>
+      <div class="id-plano">Plano: revisão legal e fiscal, consolidação estrutural, integração sucessória.</div>
+    </div>
+
+    <div class="id-item">
+      <div class="id-nome">Soberania Patrimonial</div>
+      <div class="id-foco">Foco da sessão</div>
+      <div class="id-linhas">
+        <div class="id-linha">Pontos cegos do sofisticado — onde a complacência se instala</div>
+        <div class="id-linha">Governança e continuidade patrimonial entre gerações</div>
+        <div class="id-linha">Integração global como sistema — não como camadas paralelas</div>
+        <div class="id-linha">O intervalo entre revisões como risco real</div>
+      </div>
+      <div class="id-plano">Plano: revisão anual estruturada, integração jurídico-fiscal, governança familiar.</div>
+    </div>
+  </div>
+
+  <!-- ENTREGÁVEL VISUAL -->
+  <div class="entregavel">
+    <div class="entregavel-kicker">Entregável central</div>
+    <div class="entregavel-titulo">Mapa de Exposição Global™</div>
+    <div class="entregavel-desc">Documento-síntese enviado após a sessão. Não é relatório técnico — é o registro da leitura estratégica: onde está a vulnerabilidade, o que está desalinhado, e as prioridades em ordem.</div>
+    <div class="entregavel-eixos">
+      <div class="entregavel-eixo">
+        <div class="entregavel-eixo-nome">Exposição cambial</div>
+        <div class="entregavel-eixo-desc">Grau de dependência do real e presença em moeda forte</div>
+      </div>
+      <div class="entregavel-eixo">
+        <div class="entregavel-eixo-nome">Exposição jurisdicional</div>
+        <div class="entregavel-eixo-desc">Concentração em uma única jurisdição e mobilidade estruturada</div>
+      </div>
+      <div class="entregavel-eixo">
+        <div class="entregavel-eixo-nome">Estrutura sucessória</div>
+        <div class="entregavel-eixo-desc">Proteção dos herdeiros dentro e fora do Brasil</div>
+      </div>
+      <div class="entregavel-eixo">
+        <div class="entregavel-eixo-nome">Liquidez global</div>
+        <div class="entregavel-eixo-desc">Capacidade de acessar patrimônio independente de jurisdição</div>
+      </div>
+      <div class="entregavel-eixo">
+        <div class="entregavel-eixo-nome">Adequação legislativa</div>
+        <div class="entregavel-eixo-desc">Conformidade com a Lei 14.754/2023 e obrigações vigentes</div>
+      </div>
+      <div class="entregavel-eixo">
+        <div class="entregavel-eixo-nome">Plano de prioridades</div>
+        <div class="entregavel-eixo-desc">Imediato · 90 dias · estrutural — em ordem de impacto</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INVESTIMENTO -->
+  <div class="investimento">
+    <div class="inv-kicker">Investimento</div>
+    <div class="inv-valor">R$ 1.297,00</div>
+    <div class="inv-desc">Sessão estratégica de 60 minutos por videoconferência, seguida do Mapa de Exposição Global™ enviado em até 48 horas. Agendamento via WhatsApp após a compra.</div>
+    <a class="inv-btn" href="https://pay.hotmart.com/O106143183N" target="_blank">Adquirir diagnóstico →</a>
+    <div class="inv-nota">Após a compra, Ivan entrará em contato via WhatsApp em até 24 horas para agendar sua sessão.</div>
+  </div>
+
+  <!-- SOBRE -->
+  <div class="sobre">
+    <div class="sobre-nome">Ivan Vianna</div>
+    <div class="sobre-titulo">CFP® · Planejador financeiro · Arquiteto de patrimônio</div>
+    <div class="sobre-corpo">27 anos no mercado financeiro. Especializado em planejamento patrimonial, internacionalização e planejamento sucessório para executivos de alta renda, empresários e profissionais liberais. Pós-graduando em Neurociências e Comportamento — PUCRS.</div>
+  </div>
+
+  <div class="assinatura">
+    <div class="ass-marca">Ivan Vianna · CFP® · Planejador financeiro · Arquiteto de patrimônio</div>
+    <div class="ass-info">ivanviannafinancas.com.br · CNPJ 56.099.913/0001-61</div>
+  </div>
+  <div class="disc">Este diagnóstico tem finalidade estratégica e educacional. Não constitui recomendação de investimento, consultoria jurídica, fiscal ou contábil. As análises são baseadas nas informações fornecidas pelo cliente durante a sessão.</div>
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico VIDA proteção global · confirmado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --verde:   #1A3C2E;
+  --verde2:  #2E5C46;
+  --verde3:  #3d7558;
+  --dourado: #f8e38c;
+  --dmed:    #d7ae4d;
+  --branco:  #FFFFFF;
+  --creme:   #FAF7F2;
+  --escuro:  #0F2620;
+  --texto:   #1A1A1A;
+  --sub:     #4a4a4a;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--verde);
+  color: var(--branco);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrap {
+  max-width: 620px;
+  margin: 0 auto;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── TOPO ──────────────────────────────── */
+.topo {
+  padding: 40px 40px 0;
+  position: relative;
+}
+.topo::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(248,227,140,.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+.topo-kicker {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: rgba(248,227,140,0.88);
+  margin-bottom: 40px;
+}
+
+/* ── ÍCONE DE CONFIRMAÇÃO ──────────────── */
+.confirmacao-icone {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(248,227,140,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+.confirmacao-icone svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* ── TÍTULO ────────────────────────────── */
+.titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.40rem;
+  font-weight: 600;
+  color: var(--branco);
+  line-height: 1.10;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+.titulo em {
+  color: var(--dourado);
+  font-style: italic;
+}
+.subtitulo {
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.65;
+  max-width: 440px;
+  margin-bottom: 52px;
+}
+
+/* ── LINHA DIVISÓRIA ───────────────────── */
+.divisor {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(248,227,140,0.30) 0%, transparent 100%);
+  margin: 0 40px;
+}
+
+/* ── PRÓXIMO PASSO ─────────────────────── */
+.proximo {
+  background: var(--escuro);
+  padding: 44px 40px;
+}
+.proximo-kicker {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(248,227,140,0.90);
+  margin-bottom: 20px;
+}
+.proximo-titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: var(--branco);
+  line-height: 1.22;
+  margin-bottom: 16px;
+}
+.proximo-texto {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.68;
+  margin-bottom: 36px;
+  max-width: 440px;
+}
+
+.passo-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 40px;
+}
+.passo-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.passo-item:last-child { border-bottom: none; }
+.passo-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.40rem;
+  font-weight: 600;
+  color: rgba(248,227,140,0.35);
+  flex-shrink: 0;
+  width: 28px;
+  line-height: 1;
+  margin-top: 2px;
+}
+.passo-txt h4 {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--branco);
+  margin-bottom: 4px;
+}
+.passo-txt p {
+  font-size: 0.80rem;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.55;
+}
+.passo-prazo {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  color: var(--dmed);
+  margin-top: 5px;
+  text-transform: uppercase;
+}
+
+/* ── BOTÃO WHATSAPP ────────────────────── */
+.wpp-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--verde2);
+  border: 1px solid rgba(248,227,140,0.20);
+  border-radius: 8px;
+  padding: 20px 24px;
+  text-decoration: none;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+.wpp-btn:hover {
+  background: var(--verde3);
+  border-color: rgba(248,227,140,0.40);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+}
+.wpp-icone {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(248,227,140,0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wpp-icone svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--dourado);
+}
+.wpp-txt-titulo {
+  font-size: 0.90rem;
+  font-weight: 600;
+  color: var(--dourado);
+  margin-bottom: 2px;
+}
+.wpp-txt-sub {
+  font-size: 0.76rem;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.40;
+}
+
+/* ── O QUE ESPERAR ─────────────────────── */
+.esperar {
+  background: var(--verde);
+  padding: 44px 40px;
+  border-top: 1px solid rgba(248,227,140,0.10);
+}
+.esperar-kicker {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(248,227,140,0.88);
+  margin-bottom: 20px;
+}
+.esperar-titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.40rem;
+  font-weight: 600;
+  color: var(--branco);
+  line-height: 1.25;
+  margin-bottom: 28px;
+}
+.esperar-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.esperar-item:last-child { border-bottom: none; }
+.esperar-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--dmed);
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+.esperar-txt {
+  font-size: 0.84rem;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.55;
+}
+.esperar-txt strong {
+  color: var(--branco);
+  font-weight: 600;
+}
+
+/* ── RODAPÉ ────────────────────────────── */
+.rodape {
+  background: var(--verde2);
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.rod-marca {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.90rem;
+  font-weight: 600;
+  color: var(--branco);
+}
+.rod-info {
+  font-size: 0.68rem;
+  color: rgba(248,227,140,0.88);
+}
+.disc {
+  padding: 10px 40px 8px;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.55;
+  text-align: center;
+  background: var(--verde);
+}
+
+@media (max-width: 600px) {
+  .topo, .proximo, .esperar { padding-left: 24px; padding-right: 24px; }
+  .titulo { font-size: 1.90rem; }
+  .divisor { margin: 0 24px; }
+  .rodape, .disc { padding-left: 24px; padding-right: 24px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TOPO -->
+  <div class="topo" style="padding-bottom: 44px;">
+    <div class="topo-kicker">Ivan Vianna · CFP® · Método VIDA®</div>
+
+    <div class="confirmacao-icone">
+      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="14" cy="14" r="13" stroke="#f8e38c" stroke-opacity="0.60" stroke-width="1.2"/>
+        <path d="M8 14.5l4.2 4.2 7.8-8.4" stroke="#f8e38c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="titulo">Compra confirmada.<br><em>A sessão está reservada.</em></div>
+    <div class="subtitulo">Ivan Vianna entrará em contato via WhatsApp em até 24 horas para agendar sua sessão de diagnóstico. Se preferir agilizar, envie uma mensagem agora.</div>
+  </div>
+
+  <div class="divisor"></div>
+
+  <!-- PRÓXIMO PASSO -->
+  <div class="proximo">
+    <div class="proximo-kicker">O que acontece agora</div>
+    <div class="proximo-titulo">Três etapas até o seu diagnóstico.</div>
+    <div class="proximo-texto">O processo é simples e direto. Não há formulários a preencher nem materiais a enviar antes da sessão — Ivan conduz tudo a partir do seu perfil identificado pelo scanner.</div>
+
+    <div class="passo-lista">
+      <div class="passo-item">
+        <div class="passo-num">1</div>
+        <div class="passo-txt">
+          <h4>Contato e agendamento</h4>
+          <p>Ivan entra em contato pelo WhatsApp para confirmar sua disponibilidade e agendar a sessão.</p>
+          <div class="passo-prazo">Até 24 horas</div>
+        </div>
+      </div>
+      <div class="passo-item">
+        <div class="passo-num">2</div>
+        <div class="passo-txt">
+          <h4>Sessão de diagnóstico — 60 minutos</h4>
+          <p>Videoconferência ao vivo. Ivan conduz a leitura dos seis eixos de exposição e define as prioridades de proteção para o seu perfil.</p>
+          <div class="passo-prazo">Na data acordada</div>
+        </div>
+      </div>
+      <div class="passo-item">
+        <div class="passo-num">3</div>
+        <div class="passo-txt">
+          <h4>Mapa de Exposição Global™</h4>
+          <p>Documento-síntese enviado após a sessão — com os achados, o que está desalinhado e o plano de prioridades em três horizontes.</p>
+          <div class="passo-prazo">Em até 48 horas após a sessão</div>
+        </div>
+      </div>
+    </div>
+
+    <a class="wpp-btn" href="https://wa.me/5511979530555?text=Ol%C3%A1%2C%20Ivan.%20Acabei%20de%20adquirir%20o%20Diagn%C3%B3stico%20VIDA%20Prote%C3%A7%C3%A3o%20Global%20e%20gostaria%20de%20agendar%20minha%20sess%C3%A3o." target="_blank">
+      <div class="wpp-icone">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="wpp-txt-titulo">Agilizar agendamento</div>
+        <div class="wpp-txt-sub">Enviar mensagem agora para Ivan Vianna</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- O QUE ESPERAR DA SESSÃO -->
+  <div class="esperar">
+    <div class="esperar-kicker">A sessão</div>
+    <div class="esperar-titulo">O que será mapeado nos 60 minutos.</div>
+
+    <div class="esperar-item">
+      <div class="esperar-dot"></div>
+      <div class="esperar-txt"><strong>Exposição cambial</strong> — grau de dependência do real e presença em moeda forte</div>
+    </div>
+    <div class="esperar-item">
+      <div class="esperar-dot"></div>
+      <div class="esperar-txt"><strong>Concentração jurisdicional</strong> — risco-Brasil e mobilidade patrimonial estruturada</div>
+    </div>
+    <div class="esperar-item">
+      <div class="esperar-dot"></div>
+      <div class="esperar-txt"><strong>Sucessão internacional</strong> — proteção dos herdeiros dentro e fora do Brasil</div>
+    </div>
+    <div class="esperar-item">
+      <div class="esperar-dot"></div>
+      <div class="esperar-txt"><strong>Liquidez global</strong> — capacidade de acessar patrimônio independente de jurisdição</div>
+    </div>
+    <div class="esperar-item">
+      <div class="esperar-dot"></div>
+      <div class="esperar-txt"><strong>Adequação legislativa</strong> — conformidade com a Lei 14.754/2023 e obrigações vigentes</div>
+    </div>
+    <div class="esperar-item">
+      <div class="esperar-dot"></div>
+      <div class="esperar-txt"><strong>Plano de prioridades</strong> — imediato, 90 dias e estrutural — em ordem de impacto real</div>
+    </div>
+  </div>
+
+  <!-- RODAPÉ -->
+  <div class="rodape">
+    <div class="rod-marca">Ivan Vianna · CFP® · Planejador financeiro · Arquiteto de patrimônio</div>
+    <div class="rod-info">ivanviannafinancas.com.br · CNPJ 56.099.913/0001-61</div>
+  </div>
+  <div class="disc">Este diagnóstico tem finalidade estratégica e educacional. Não constitui recomendação de investimento, consultoria jurídica, fiscal ou contábil. As análises são baseadas nas informações fornecidas durante a sessão.</div>
+
+</div>
+</body>
+</html>
