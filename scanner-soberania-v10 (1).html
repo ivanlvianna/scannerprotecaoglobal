@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scanner de soberania patrimonial · Ivan Vianna CFP®</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --verde:   #1A3C2E;
+  --verde2:  #2E5C46;
+  --verde3:  #3d7558;
+  --dourado: #f8e38c;
+  --dmed:    #d7ae4d;
+  --dscuro:  #a8862a;
+  --branco:  #FFFFFF;
+  --creme:   #FAF7F2;
+  --cinza:   #F2F0EB;
+  --texto:   #1A1A1A;
+  --sub:     #4a4a4a;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--creme);
+  color: var(--texto);
+  min-height: 100vh;
+}
+
+.wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 0 40px;
+}
+
+/* ── INTRO ─────────────────────────────── */
+.intro {
+  background: var(--verde);
+  padding: 40px 36px 32px;
+  position: relative;
+  overflow: hidden;
+}
+.intro::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(248,227,140,.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.intro::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--dourado) 0%, var(--dmed) 40%, transparent 100%);
+}
+.intro-kicker {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(248,227,140,0.80);
+  margin-bottom: 22px;
+}
+.intro-titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.10rem;
+  font-weight: 600;
+  color: var(--branco);
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+.intro-titulo em {
+  font-style: italic;
+  color: var(--dourado);
+}
+.intro-tensao {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.6;
+  margin-bottom: 28px;
+  max-width: 460px;
+}
+.intro-meta {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.intro-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.72rem;
+  color: rgba(248,227,140,0.75);
+  letter-spacing: 0.04em;
+}
+.intro-meta-dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--dmed);
+  flex-shrink: 0;
+}
+
+/* ── PROGRESSO ─────────────────────────── */
+.prog-wrap {
+  padding: 0 36px;
+  background: var(--verde);
+}
+.prog-bar-bg {
+  height: 2px;
+  background: rgba(255,255,255,0.10);
+  overflow: hidden;
+}
+.prog-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--dourado), var(--dmed));
+  transition: width 0.5s cubic-bezier(.4,0,.2,1);
+}
+.prog-texto {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0 18px;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.88);
+  letter-spacing: 0.07em;
+}
+
+/* ── ÁREA PERGUNTAS ────────────────────── */
+.body-area {
+  padding: 32px 36px 0;
+}
+
+.pergunta {
+  display: none;
+  animation: fadeUp .35s ease both;
+}
+.pergunta.ativa { display: block; }
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(10px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+.perg-num {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--verde3);
+  margin-bottom: 12px;
+}
+.perg-texto {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: var(--verde);
+  line-height: 1.30;
+  margin-bottom: 24px;
+}
+.perg-contexto {
+  font-size: 0.78rem;
+  color: var(--sub);
+  line-height: 1.55;
+  margin-bottom: 20px;
+  font-style: italic;
+  border-left: 2px solid rgba(215,174,77,0.35);
+  padding-left: 12px;
+}
+
+/* ── OPÇÕES ────────────────────────────── */
+.opcoes {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.opcao {
+  background: var(--branco);
+  border: 1.5px solid #DDD8CE;
+  border-radius: 7px;
+  padding: 15px 18px;
+  cursor: pointer;
+  transition: all .18s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+}
+.opcao:hover {
+  border-color: var(--verde2);
+  background: #F2F6F3;
+  transform: translateX(4px);
+}
+.opcao.selecionada {
+  border-color: var(--verde);
+  background: #EAF0EC;
+}
+
+.opcao-bullet {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid #CCC;
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .18s ease;
+}
+.opcao.selecionada .opcao-bullet {
+  background: var(--verde);
+  border-color: var(--verde);
+}
+.opcao.selecionada .opcao-bullet::after {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--dourado);
+}
+
+.opcao-label {
+  font-size: 0.86rem;
+  color: var(--texto);
+  line-height: 1.45;
+  font-weight: 400;
+}
+.opcao.selecionada .opcao-label {
+  color: var(--verde);
+  font-weight: 500;
+}
+
+/* ── BOTÃO ─────────────────────────────── */
+.btn-wrap {
+  margin-top: 22px;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 8px;
+}
+.btn-prox {
+  background: var(--verde);
+  color: var(--dourado);
+  border: none;
+  padding: 13px 28px;
+  border-radius: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all .2s ease;
+  opacity: 0.30;
+  pointer-events: none;
+}
+.btn-prox.habilitado {
+  opacity: 1;
+  pointer-events: all;
+}
+.btn-prox.habilitado:hover {
+  background: var(--verde2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 18px rgba(26,60,46,.22);
+}
+
+/* ── CALCULANDO ────────────────────────── */
+.calculando {
+  display: none;
+  text-align: center;
+  padding: 64px 36px;
+}
+.calculando.ativo { display: block; }
+.calc-icone {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  animation: pulsar 1.6s ease-in-out infinite;
+}
+@keyframes pulsar {
+  0%, 100% { opacity: 0.55; transform: scale(0.97); }
+  50%       { opacity: 1;    transform: scale(1.04); }
+}
+.calc-txt {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  color: var(--verde);
+  font-style: italic;
+}
+
+/* ── RESULTADO — fluxo contínuo, sem cards ─ */
+.resultado {
+  display: none;
+  animation: fadeUp .5s ease both;
+}
+.resultado.ativo { display: block; }
+
+
+/* Símbolo — bússola patrimonial */
+.bussola-wrap {
+  background: var(--verde);
+  padding: 0 36px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bussola-svg {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 10px;
+}
+.bussola-legenda {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.bussola-eixo {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.88);
+  font-weight: 500;
+}
+.bussola-eixo.exposto {
+  color: #e07070;
+  font-weight: 700;
+}
+.bussola-eixo.soberano {
+  color: rgba(248,227,140,0.85);
+  font-weight: 600;
+}
+
+/* Bloco identidade — tela cheia, sem borda */
+.res-header {
+  padding: 44px 36px 36px;
+  background: var(--verde);
+  position: relative;
+  overflow: hidden;
+}
+.res-header::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(248,227,140,.05) 0%, transparent 65%);
+  pointer-events: none;
+}
+.res-kicker {
+  font-size: 0.70rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(248,227,140,0.70);
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+.res-identidade {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.80rem;
+  font-weight: 600;
+  color: var(--dourado);
+  line-height: 1.05;
+  margin-bottom: 22px;
+  letter-spacing: -0.01em;
+}
+.res-desc {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,.80);
+  line-height: 1.60;
+  max-width: 440px;
+  font-weight: 300;
+}
+
+/* Barra de estágios — sem padding próprio, continua no verde */
+.nivel-area {
+  padding: 0 36px 32px;
+  background: var(--verde);
+}
+.nivel-estagios {
+  display: flex;
+  gap: 4px;
+}
+.nivel-estagio {
+  flex: 1;
+  height: 3px;
+  background: rgba(255,255,255,0.10);
+  transition: background 0.6s ease;
+}
+.nivel-estagio.ativo {
+  background: linear-gradient(90deg, var(--dourado), var(--dmed));
+}
+.nivel-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7px;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.88);
+  letter-spacing: 0.05em;
+}
+.nivel-label-destaque {
+  color: rgba(248,227,140,0.90) !important;
+  font-weight: 600;
+}
+
+/* Espelho da perda — coração do "oh shit" */
+.espelho {
+  background: #0F2620;
+  padding: 36px 36px 32px;
+}
+.espelho-kicker {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(248,227,140,0.90);
+  margin-bottom: 20px;
+}
+.espelho-pergunta {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.10rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.90);
+  line-height: 1.50;
+  margin-bottom: 28px;
+}
+
+/* Input de patrimônio */
+.espelho-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 28px;
+}
+.espelho-prefix {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.20rem;
+  color: rgba(248,227,140,0.80);
+  padding: 12px 14px 12px 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.espelho-input {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.00rem;
+  font-weight: 600;
+  color: var(--dourado);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(248,227,140,0.25);
+  padding: 4px 0 8px;
+  width: 100%;
+  outline: none;
+  letter-spacing: -0.01em;
+}
+.espelho-input::placeholder {
+  color: rgba(248,227,140,0.20);
+}
+
+/* Linhas de impacto */
+.espelho-linhas {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.espelho-linhas.visivel { opacity: 1; }
+
+.espelho-linha {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.espelho-linha:last-child { border-bottom: none; }
+.espelho-linha-label {
+  font-size: 0.80rem;
+  color: rgba(255,255,255,0.88);
+  font-weight: 400;
+  max-width: 55%;
+  line-height: 1.40;
+}
+.espelho-linha-valor {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.30rem;
+  font-weight: 600;
+  text-align: right;
+}
+.espelho-linha-valor.perda { color: #e07070; }
+.espelho-linha-valor.alerta { color: rgba(248,227,140,0.90); }
+.espelho-linha-valor.neutro { color: rgba(255,255,255,0.70); }
+
+/* Frase brutal — continua no fundo escuro do espelho */
+.revelacao {
+  background: #0F2620;
+  padding: 0 36px 44px;
+}
+.revelacao-txt {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.65rem;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.38;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  letter-spacing: -0.01em;
+}
+
+/* Achado único — ponte entre escuro e CTA */
+.achado-unico {
+  padding: 28px 36px 24px;
+  background: var(--creme);
+}
+.achado-unico-txt {
+  font-size: 0.88rem;
+  color: #3a3a3a;
+  line-height: 1.62;
+}
+
+/* CTA — limpo, sem card */
+.res-cta {
+  padding: 36px 36px 32px;
+  background: var(--branco);
+}
+.res-cta-titulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.50rem;
+  font-weight: 600;
+  color: var(--verde);
+  line-height: 1.22;
+  margin-bottom: 12px;
+}
+.res-cta-desc {
+  font-size: 0.86rem;
+  color: #3a3a3a;
+  line-height: 1.65;
+  margin-bottom: 24px;
+  max-width: 440px;
+}
+.res-preco {
+  font-size: 0.72rem;
+  color: var(--verde3);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.res-cta-btn {
+  display: inline-block;
+  background: var(--verde);
+  color: var(--dourado);
+  padding: 15px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: all .2s ease;
+}
+.res-cta-btn:hover {
+  background: var(--verde2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(26,60,46,.20);
+}
+.res-reiniciar {
+  display: block;
+  margin-top: 16px;
+  font-size: 0.72rem;
+  color: rgba(0,0,0,0.45);
+  cursor: pointer;
+  letter-spacing: 0.04em;
+}
+.res-reiniciar:hover { color: var(--verde); }
+
+/* Assinatura */
+.assinatura {
+  padding: 14px 36px;
+  background: var(--verde2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.ass-marca {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--branco);
+}
+.ass-info {
+  font-size: 0.68rem;
+  color: rgba(248,227,140,0.75);
+}
+
+.captura-wrap {
+  padding: 28px 0 8px;
+}
+.captura-intro {
+  font-size: 0.80rem;
+  color: var(--sub);
+  margin-bottom: 20px;
+  line-height: 1.55;
+}
+.captura-campo {
+  margin-bottom: 16px;
+}
+.captura-label {
+  display: block;
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--verde);
+  margin-bottom: 6px;
+}
+.captura-obrig {
+  color: #c0392b;
+}
+.captura-input {
+  width: 100%;
+  border: 1.5px solid #DDD8CE;
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.88rem;
+  color: var(--texto);
+  background: var(--branco);
+  outline: none;
+  transition: border-color .18s ease;
+}
+.captura-input:focus {
+  border-color: var(--verde2);
+}
+.captura-hint {
+  font-size: 0.68rem;
+  color: rgba(0,0,0,0.40);
+  margin-top: 4px;
+  line-height: 1.45;
+}
+.captura-erro {
+  font-size: 0.76rem;
+  color: #c0392b;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.disc {
+  padding: 10px 36px 6px;
+  font-size: 0.65rem;
+  color: #777;
+  line-height: 1.5;
+  text-align: center;
+  background: var(--creme);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .intro, .res-header { padding-left: 22px; padding-right: 22px; }
+  .intro-titulo { font-size: 1.65rem; }
+  .prog-wrap { padding-left: 22px; padding-right: 22px; }
+  .body-area { padding: 24px 22px 0; }
+  .perg-texto { font-size: 1.30rem; }
+  .achados, .revelacao, .res-cta, .assinatura, .disc, .nivel-area { padding-left: 22px; padding-right: 22px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- INTRO -->
+  <div class="intro" id="intro">
+    <div class="intro-kicker">Série Patrimônio Global · Ivan Vianna CFP®</div>
+    <div class="intro-titulo">E se você estiver<br>construindo tudo<br><em>no país errado?</em></div>
+    <div class="intro-tensao">6 perguntas para revelar o quanto do seu patrimônio sobrevive sem o Brasil.</div>
+    <div class="intro-meta">
+      <div class="intro-meta-item"><div class="intro-meta-dot"></div> 3 minutos</div>
+      <div class="intro-meta-item"><div class="intro-meta-dot"></div> 6 perguntas</div>
+      <div class="intro-meta-item"><div class="intro-meta-dot"></div> Resultado imediato</div>
+    </div>
+  </div>
+
+  <!-- PROGRESSO -->
+  <div class="prog-wrap" id="prog-wrap" style="display:none">
+    <div class="prog-bar-bg"><div class="prog-bar-fill" id="prog-fill" style="width:0%"></div></div>
+    <div class="prog-texto">
+      <span id="prog-label">Pergunta 1 de 6</span>
+      <span id="prog-pct">0%</span>
+    </div>
+  </div>
+
+  <!-- CAPTURA + BOTÃO INICIAR -->
+  <div class="body-area" id="area-iniciar">
+    <div class="captura-wrap">
+      <div class="captura-intro">Para receber seu resultado personalizado, informe:</div>
+      <div class="captura-campo">
+        <label class="captura-label" for="cap-nome">Nome</label>
+        <input class="captura-input" id="cap-nome" type="text" placeholder="Seu nome completo" autocomplete="name">
+      </div>
+      <div class="captura-campo">
+        <label class="captura-label" for="cap-whatsapp">WhatsApp <span class="captura-obrig">*</span></label>
+        <input class="captura-input" id="cap-whatsapp" type="tel" placeholder="(11) 99999-9999" autocomplete="tel">
+        <div class="captura-hint">Obrigatório — usado apenas para envio do diagnóstico</div>
+      </div>
+      <div class="captura-campo">
+        <label class="captura-label" for="cap-email">E-mail</label>
+        <input class="captura-input" id="cap-email" type="email" placeholder="seu@email.com" autocomplete="email">
+      </div>
+      <div id="captura-erro" class="captura-erro" style="display:none">Informe seu WhatsApp para continuar.</div>
+      <div style="padding: 8px 0 0; display:flex; justify-content:flex-start">
+        <button class="btn-prox habilitado" onclick="validarCaptura()" style="padding:14px 32px;font-size:0.88rem">
+          Descobrir minha exposição →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERGUNTAS -->
+  <div class="body-area" id="area-perguntas" style="display:none">
+
+    <!-- P1 -->
+    <div class="pergunta" id="p1">
+      <div class="perg-num">Pergunta 1 de 6</div>
+      <div class="perg-texto">Se o Brasil piorar amanhã, quanto do seu patrimônio escapa junto com você?</div>
+      <div class="perg-contexto">Inclua investimentos no exterior, BDRs, ETFs globais, imóveis fora do país. Dólar em espécie não conta.</div>
+      <div class="opcoes" data-perg="1">
+        <div class="opcao" data-val="0" onclick="selecionar(this,1)"><div class="opcao-bullet"></div><div class="opcao-label">Nada. 100% do que tenho está no Brasil.</div></div>
+        <div class="opcao" data-val="1" onclick="selecionar(this,1)"><div class="opcao-bullet"></div><div class="opcao-label">Menos de 10% — tenho algo, mas é marginal.</div></div>
+        <div class="opcao" data-val="2" onclick="selecionar(this,1)"><div class="opcao-bullet"></div><div class="opcao-label">Entre 10% e 30% — começo de estrutura, ainda concentrado.</div></div>
+        <div class="opcao" data-val="3" onclick="selecionar(this,1)"><div class="opcao-bullet"></div><div class="opcao-label">Acima de 30% — tenho posição internacional real.</div></div>
+      </div>
+      <div class="btn-wrap"><button class="btn-prox" id="btn-p1" onclick="avancar(1)">Próxima →</button></div>
+    </div>
+
+    <!-- P2 -->
+    <div class="pergunta" id="p2">
+      <div class="perg-num">Pergunta 2 de 6</div>
+      <div class="perg-texto">Qual é o seu maior ativo — e quanto ele representa do total?</div>
+      <div class="perg-contexto">Imóvel, empresa, participação societária, fundo único. Concentração não declarada é o risco mais subestimado.</div>
+      <div class="opcoes" data-perg="2">
+        <div class="opcao" data-val="0" onclick="selecionar(this,2)"><div class="opcao-bullet"></div><div class="opcao-label">Mais de 60% — um único ativo domina tudo.</div></div>
+        <div class="opcao" data-val="1" onclick="selecionar(this,2)"><div class="opcao-bullet"></div><div class="opcao-label">Entre 40% e 60% — concentrado, com alguns outros ativos.</div></div>
+        <div class="opcao" data-val="2" onclick="selecionar(this,2)"><div class="opcao-bullet"></div><div class="opcao-label">Entre 20% e 40% — distribuído, mas com peso relevante.</div></div>
+        <div class="opcao" data-val="3" onclick="selecionar(this,2)"><div class="opcao-bullet"></div><div class="opcao-label">Menos de 20% — bem distribuído entre diferentes ativos.</div></div>
+      </div>
+      <div class="btn-wrap"><button class="btn-prox" id="btn-p2" onclick="avancar(2)">Próxima →</button></div>
+    </div>
+
+    <!-- P3 -->
+    <div class="pergunta" id="p3">
+      <div class="perg-num">Pergunta 3 de 6</div>
+      <div class="perg-texto">O real perdeu 40% do valor entre 2019 e 2021. O que esse cenário faria com o seu padrão de vida?</div>
+      <div class="perg-contexto">Isso já aconteceu. Não é hipótese — é histórico.</div>
+      <div class="opcoes" data-perg="3">
+        <div class="opcao" data-val="0" onclick="selecionar(this,3)"><div class="opcao-bullet"></div><div class="opcao-label">Impacto severo — viagens, produtos importados, reservas: tudo afetado diretamente.</div></div>
+        <div class="opcao" data-val="1" onclick="selecionar(this,3)"><div class="opcao-bullet"></div><div class="opcao-label">Impacto moderado — sentiria, mas absorveria sem comprometer o essencial.</div></div>
+        <div class="opcao" data-val="2" onclick="selecionar(this,3)"><div class="opcao-bullet"></div><div class="opcao-label">Impacto limitado — parte do patrimônio já está em moeda forte.</div></div>
+        <div class="opcao" data-val="3" onclick="selecionar(this,3)"><div class="opcao-bullet"></div><div class="opcao-label">Impacto mínimo — minha estrutura resiste a variações cambiais severas.</div></div>
+      </div>
+      <div class="btn-wrap"><button class="btn-prox" id="btn-p3" onclick="avancar(3)">Próxima →</button></div>
+    </div>
+
+    <!-- P4 -->
+    <div class="pergunta" id="p4">
+      <div class="perg-num">Pergunta 4 de 6</div>
+      <div class="perg-texto">Você tem herdeiros, negócios ou bens fora do Brasil?</div>
+      <div class="perg-contexto">Filhos morando no exterior, empresa com operação internacional, imóvel fora — qualquer vínculo patrimonial além-fronteira.</div>
+      <div class="opcoes" data-perg="4">
+        <div class="opcao" data-val="0" onclick="selecionar(this,4)"><div class="opcao-bullet"></div><div class="opcao-label">Não. Todo o meu patrimônio e família estão no Brasil.</div></div>
+        <div class="opcao" data-val="1" onclick="selecionar(this,4)"><div class="opcao-bullet"></div><div class="opcao-label">Tenho vínculos, mas nenhuma estrutura jurídica no exterior.</div></div>
+        <div class="opcao" data-val="2" onclick="selecionar(this,4)"><div class="opcao-bullet"></div><div class="opcao-label">Sim — e já iniciei algum tipo de estruturação internacional.</div></div>
+        <div class="opcao" data-val="3" onclick="selecionar(this,4)"><div class="opcao-bullet"></div><div class="opcao-label">Sim — com holding, trust ou estrutura formal implementada.</div></div>
+      </div>
+      <div class="btn-wrap"><button class="btn-prox" id="btn-p4" onclick="avancar(4)">Próxima →</button></div>
+    </div>
+
+    <!-- P5 — substituída: agora sobre liberdade e continuidade -->
+    <div class="pergunta" id="p5">
+      <div class="perg-num">Pergunta 5 de 6</div>
+      <div class="perg-texto">Se você precisasse sair do Brasil definitivamente — por escolha ou por necessidade — seu patrimônio te acompanharia?</div>
+      <div class="perg-contexto">Não é sobre emigrar. É sobre ter essa liberdade estruturada — ou depender do que o Brasil permitir.</div>
+      <div class="opcoes" data-perg="5">
+        <div class="opcao" data-val="0" onclick="selecionar(this,5)"><div class="opcao-bullet"></div><div class="opcao-label">Não. Meu patrimônio está preso aqui — imóveis, empresa, ativos locais.</div></div>
+        <div class="opcao" data-val="1" onclick="selecionar(this,5)"><div class="opcao-bullet"></div><div class="opcao-label">Parcialmente. Conseguiria transferir algo, mas boa parte ficaria.</div></div>
+        <div class="opcao" data-val="2" onclick="selecionar(this,5)"><div class="opcao-bullet"></div><div class="opcao-label">Em grande parte sim — já tenho ativos líquidos e internacionais.</div></div>
+        <div class="opcao" data-val="3" onclick="selecionar(this,5)"><div class="opcao-bullet"></div><div class="opcao-label">Sim. Tenho estrutura construída para funcionar independente de onde estou.</div></div>
+      </div>
+      <div class="btn-wrap"><button class="btn-prox" id="btn-p5" onclick="avancar(5)">Próxima →</button></div>
+    </div>
+
+    <!-- P6 -->
+    <div class="pergunta" id="p6">
+      <div class="perg-num">Pergunta 6 de 6</div>
+      <div class="perg-texto">Como você descreveria sua relação com a internacionalização patrimonial hoje?</div>
+      <div class="perg-contexto">Não existe resposta certa. O que importa é a clareza de onde você está.</div>
+      <div class="opcoes" data-perg="6">
+        <div class="opcao" data-val="0" onclick="selecionar(this,6)"><div class="opcao-bullet"></div><div class="opcao-label">Nunca pensei nisso de forma estruturada.</div></div>
+        <div class="opcao" data-val="1" onclick="selecionar(this,6)"><div class="opcao-bullet"></div><div class="opcao-label">Tenho intenção, mas ainda não tomei nenhuma ação concreta.</div></div>
+        <div class="opcao" data-val="2" onclick="selecionar(this,6)"><div class="opcao-bullet"></div><div class="opcao-label">Tenho alguns ativos fora, mas sem arquitetura definida.</div></div>
+        <div class="opcao" data-val="3" onclick="selecionar(this,6)"><div class="opcao-bullet"></div><div class="opcao-label">Tenho estratégia definida e reviso periodicamente com assessor.</div></div>
+      </div>
+      <div class="btn-wrap"><button class="btn-prox" id="btn-p6" onclick="calcular()">Ver meu diagnóstico →</button></div>
+    </div>
+
+  </div><!-- /area-perguntas -->
+
+  <!-- CALCULANDO -->
+  <div class="body-area" id="area-calc" style="display:none">
+    <div class="calculando ativo">
+      <div class="calc-icone">◎</div>
+      <div class="calc-txt">Mapeando sua exposição patrimonial…</div>
+    </div>
+  </div>
+
+  <!-- RESULTADO -->
+  <div id="area-resultado" style="display:none">
+    <div class="resultado ativo" id="resultado-conteudo"></div>
+  </div>
+
+  <!-- ASSINATURA -->
+  <div class="assinatura">
+    <div class="ass-marca">Ivan Vianna · CFP® · Método VIDA®</div>
+    <div class="ass-info">ivanviannafinancas.com.br · CNPJ 56.099.913/0001-61</div>
+  </div>
+  <div class="disc">Este scanner tem finalidade exclusivamente informativa e educacional. Não constitui recomendação de investimento, consultoria jurídica, fiscal ou contábil. Resultados baseados em respostas autodeclaradas.</div>
+
+</div><!-- /wrap -->
+
+<script>
+const respostas = {};
+
+// ── CAPTURA DE LEADS ─────────────────────────────────────────────────────
+const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxoKzIqLJLtbDQl_KH8tNRjb_vbIbWZYz8oOYiKxzFcTsv1GaRwJHbhZ5VNBO8Vn7p/exec";
+
+window._leadCapturado = {};
+
+function validarCaptura() {
+  const nome      = document.getElementById('cap-nome').value.trim();
+  const whatsapp  = document.getElementById('cap-whatsapp').value.trim();
+  const email     = document.getElementById('cap-email').value.trim();
+  const erro      = document.getElementById('captura-erro');
+
+  if (!whatsapp) {
+    erro.style.display = 'block';
+    document.getElementById('cap-whatsapp').focus();
+    return;
+  }
+  erro.style.display = 'none';
+
+  window._leadCapturado = { nome, whatsapp, email };
+  iniciar();
+}
+
+function enviarLead(identidade, nivel) {
+  const d = window._leadCapturado;
+  const payload = {
+    aba:        'Scanner Soberania Patrimonial',
+    nome:       d.nome     || '',
+    whatsapp:   d.whatsapp || '',
+    email:      d.email    || '',
+    identidade: identidade,
+    nivel:      nivel,
+    data:       new Date().toLocaleString('pt-BR', {timeZone:'America/Sao_Paulo'})
+  };
+  fetch(WEBHOOK_URL, {
+    method:  'POST',
+    mode:    'no-cors',
+    headers: {'Content-Type': 'application/json'},
+    body:    JSON.stringify(payload)
+  }).catch(() => {});
+}
+
+
+
+function iniciar() {
+  document.getElementById('area-iniciar').style.display = 'none';
+  document.getElementById('prog-wrap').style.display = 'block';
+  document.getElementById('area-perguntas').style.display = 'block';
+  mostrarPergunta(1);
+  atualizarProg(1);
+}
+
+function mostrarPergunta(n) {
+  document.querySelectorAll('.pergunta').forEach(p => p.classList.remove('ativa'));
+  const el = document.getElementById('p' + n);
+  if (el) {
+    el.classList.add('ativa');
+    document.querySelector('.wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+function atualizarProg(n) {
+  const pct = Math.round(((n - 1) / 6) * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-label').textContent = 'Pergunta ' + n + ' de 6';
+  document.getElementById('prog-pct').textContent = pct + '%';
+}
+
+function selecionar(el, perg) {
+  const grupo = el.parentNode;
+  grupo.querySelectorAll('.opcao').forEach(o => o.classList.remove('selecionada'));
+  el.classList.add('selecionada');
+  respostas[perg] = parseInt(el.dataset.val);
+  const btn = document.getElementById('btn-p' + perg);
+  if (btn) btn.classList.add('habilitado');
+}
+
+function avancar(atual) {
+  if (respostas[atual] === undefined) return;
+  mostrarPergunta(atual + 1);
+  atualizarProg(atual + 1);
+}
+
+function calcular() {
+  if (respostas[6] === undefined) return;
+
+  document.getElementById('area-perguntas').style.display = 'none';
+  document.getElementById('prog-wrap').style.display = 'none';
+  document.getElementById('area-calc').style.display = 'block';
+
+  setTimeout(() => {
+    const total = Object.values(respostas).reduce((a, b) => a + b, 0);
+    document.getElementById('area-calc').style.display = 'none';
+    document.getElementById('area-resultado').style.display = 'block';
+    const htmlResultado = gerarResultado(total);
+    document.getElementById('resultado-conteudo').innerHTML = htmlResultado;
+    // Dispara captura após mostrar resultado
+    const nivelMap = total <= 5 ? 1 : total <= 10 ? 2 : total <= 14 ? 3 : 4;
+    const idMap    = ['Prisioneiro do Real','Diversificação Cosmética','Patrimônio em Transição','Soberania Patrimonial'];
+    enviarLead(idMap[nivelMap - 1], nivelMap);
+    setTimeout(() => ativarNivel(), 200);
+  }, 1800);
+}
+
+
+function gerarBussola(nivelAtivo) {
+  // Eixos: topo=Brasil, direita=Moeda, baixo=Sucessão, esquerda=Mobilidade
+  const eixos = [
+    { label:'Brasil',     angle: -90, key:'brasil'    },
+    { label:'Moeda',      angle:   0, key:'moeda'     },
+    { label:'Sucessão',   angle:  90, key:'sucessao'  },
+    { label:'Mobilidade', angle: 180, key:'mobilidade'},
+  ];
+
+  // Raio de cada eixo por perfil — colapso gravitacional nos baixos
+  // Perfil 1: retraído = colapso. Perfil 4: pleno = soberania.
+  const raios = {
+    brasil:     { 1: 8,  2: 16, 3: 28, 4: 32 },
+    moeda:      { 1: 8,  2: 12, 3: 30, 4: 32 },
+    sucessao:   { 1: 8,  2: 26, 3: 14, 4: 32 },
+    mobilidade: { 1: 8,  2: 24, 3: 28, 4: 32 },
+  };
+
+  // Cor por perfil e eixo
+  const corEixo = (key, nivel) => {
+    if (nivel === 4) return 'rgba(248,227,140,0.55)';
+    if (nivel === 3 && key === 'sucessao') return '#e07070';
+    if (nivel === 2 && (key === 'brasil' || key === 'moeda')) return '#e07070';
+    if (nivel === 1) return '#e07070';
+    return 'rgba(248,227,140,0.28)';
+  };
+
+  const cx = 48, cy = 48, maxR = 32;
+  let linhas = '', pontos = '';
+  const coords = [];
+
+  eixos.forEach(e => {
+    const r   = raios[e.key][nivelAtivo];
+    const rad = (e.angle * Math.PI) / 180;
+    const x   = cx + r * Math.cos(rad);
+    const y   = cy + r * Math.sin(rad);
+    coords.push({ x, y });
+    const cor  = corEixo(e.key, nivelAtivo);
+    const sw   = nivelAtivo === 1 ? 0.8 : (r > 20 ? 1.2 : 0.8);
+    const rPt  = nivelAtivo === 1 ? 2.2 : (r > 20 ? 3 : 1.8);
+    // linha ao topo do eixo
+    linhas += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="${cor}" stroke-width="${sw}" opacity="${nivelAtivo===1?0.6:0.9}"/>`;
+    // linha pontilhada do topo ao limite externo (espaço não alcançado)
+    const xMax = cx + maxR * Math.cos(rad);
+    const yMax = cy + maxR * Math.sin(rad);
+    if (r < maxR - 2) {
+      linhas += `<line x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${xMax.toFixed(1)}" y2="${yMax.toFixed(1)}" stroke="${cor}" stroke-width="0.5" stroke-dasharray="2,3" opacity="0.18"/>`;
+    }
+    pontos += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rPt}" fill="${cor}" opacity="${nivelAtivo===1?0.7:1}"/>`;
+  });
+
+  // Polígono da área real alcançada
+  const polyPts   = coords.map(c => `${c.x.toFixed(1)},${c.y.toFixed(1)}`).join(' ');
+  const polyFill  = nivelAtivo === 4 ? 'rgba(248,227,140,0.06)' : 'rgba(224,112,112,0.10)';
+  const polyStroke= nivelAtivo === 4 ? 'rgba(248,227,140,0.25)' : 'rgba(224,112,112,0.30)';
+
+  // Centro: pulsante em vermelho se colapso, dourado se soberania
+  const centroCor  = nivelAtivo === 4 ? 'rgba(248,227,140,0.70)' : 'rgba(224,112,112,0.80)';
+  const centroR    = nivelAtivo === 1 ? 4 : 2.5;
+
+  return `
+    <div class="bussola-wrap">
+      <svg class="bussola-svg" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+        <!-- perímetro máximo possível -->
+        <circle cx="48" cy="48" r="${maxR}" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/>
+        <circle cx="48" cy="48" r="${maxR/2}" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/>
+        <!-- eixos e extensões pontilhadas -->
+        ${linhas}
+        <!-- área real -->
+        <polygon points="${polyPts}" fill="${polyFill}" stroke="${polyStroke}" stroke-width="0.8"/>
+        <!-- pontas -->
+        ${pontos}
+        <!-- centro -->
+        <circle cx="48" cy="48" r="${centroR}" fill="${centroCor}"/>
+      </svg>
+      <div class="bussola-legenda">
+        ${eixos.map(e => {
+          const r = raios[e.key][nivelAtivo];
+          const retraido = r < 20;
+          return `<span class="bussola-eixo ${retraido ? 'exposto' : (nivelAtivo===4 ? 'soberano' : '')}">${e.label}</span>`;
+        }).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function gerarResultado(total) {
+  let identidade, nivelAtivo, desc, achados, achado, revelacao, ctaTitulo, ctaBtn, ctaDesc;
+  let espelhoPergunta, espelhoLinhasFn;
+
+  if (total <= 5) {
+    identidade        = 'Prisioneiro do Real';
+    nivelAtivo        = 1;
+    desc              = 'Seu patrimônio não sobrevive sem o Brasil.';
+    achados = [
+      { i:'!', t:'Exposição cambial total', d:'O real pode destruir patrimônio sem parecer crise.' },
+      { i:'!', t:'Sem rota de saída',        d:'Se o Brasil travar, seu patrimônio trava junto.' },
+      { i:'→', t:'O primeiro passo',         d:'Internacionalização começa com alocação — não com offshore. Está mais próximo do que parece.' },
+    ];
+    revelacao         = 'Patrimônio concentrado em uma jurisdição não é liberdade. É dependência com extrato. E o real já demonstrou, mais de uma vez, o que faz com patrimônios que dependem exclusivamente dele.';
+    ctaTitulo         = 'Diagnóstico VIDA Proteção Global';
+    ctaBtn            = 'Ver minha exposição invisível →';
+    ctaDesc           = 'O Diagnóstico VIDA Proteção Global mapeia em 60 minutos sua exposição cambial, jurisdicional e sucessória — e entrega um plano de prioridades concreto.';
+    achado            = 'O primeiro movimento raramente é complexo. O difícil não é começar — é perceber cedo o suficiente.';
+    espelhoPergunta   = 'Se o real repetir a desvalorização dos últimos 10 anos, o que acontece com o seu patrimônio?';
+    espelhoLinhasFn   = (v) => [
+      { label:'Dependência do real',          val: fmtM(v),           cls:'perda'  },
+      { label:'Proteção cambial',             val: 'Nenhuma',         cls:'perda'  },
+      { label:'Mobilidade comprometida',      val: '100%',            cls:'perda'  },
+      { label:'Janela ainda aberta',          val: 'Por enquanto',    cls:'alerta' },
+    ];
+
+  } else if (total <= 10) {
+    identidade        = 'Diversificação Cosmética';
+    nivelAtivo        = 2;
+    desc              = 'A diversificação existe. A arquitetura, ainda não.';
+    achados = [
+      { i:'◎', t:'Diversificação sem arquitetura', d:'Ter BDRs é diferente de ter uma estratégia. O que falta é proporção, propósito e revisão.' },
+      { i:'!', t:'Liberdade condicionada',          d:'Uma crise severa ainda limitaria sua mobilidade. O problema não é falta de ativos — é ausência de arquitetura.' },
+      { i:'→', t:'O próximo nível',                 d:'Com o que você já tem, a próxima camada está mais próxima do que parece.' },
+    ];
+    revelacao         = 'Diversificação sem mobilidade continua sendo dependência. A diferença é que agora parece protegido — e essa ilusão é o risco mais caro.';
+    ctaTitulo         = 'Diagnóstico VIDA Proteção Global';
+    ctaBtn            = 'Solicitar leitura estratégica →';
+    ctaDesc           = 'O Diagnóstico VIDA Proteção Global é uma sessão de 60 minutos para separar o que realmente protege do que apenas parece proteger — com entregável pós-sessão.';
+    achado            = 'O que você tem é mais do que suficiente para começar. O que falta não é patrimônio — é arquitetura. E arquitetura começa com intenção, não com instrumento.';
+    espelhoPergunta   = 'Com a estrutura atual, quanto do seu patrimônio resistiria a uma crise severa?';
+    espelhoLinhasFn   = (v) => {
+      const intl  = v * 0.08;
+      const local = v - intl;
+      return [
+        { label:'Concentração local',         val: fmtM(local),           cls:'perda'  },
+        { label:'Proteção cambial real',      val: fmtM(intl),            cls:'alerta' },
+        { label:'Impacto potencial (−40%)',   val: '−' + fmtM(local * 0.40), cls:'perda' },
+        { label:'Sucessão internacional',     val: 'Descoberta',          cls:'neutro' },
+      ];
+    };
+
+  } else if (total <= 14) {
+    identidade        = 'Patrimônio em Transição';
+    nivelAtivo        = 3;
+    desc              = 'Você está em movimento. Crescer sem revisar é o próximo risco.';
+    achados = [
+      { i:'◎', t:'Estrutura sem integração', d:'Internacionalização precisa conversar com sucessão e proteção. Camadas isoladas acumulam fragilidade.' },
+      { i:'!', t:'Legislação mudou',          d:'A Lei 14.754/2023 alterou as regras do jogo. Estruturas montadas antes de 2024 podem estar desatualizadas.' },
+      { i:'→', t:'Sucessão internacional',    d:'Estate tax americana pode consumir até 40% dos ativos deixados no exterior. Não é detalhe.' },
+    ];
+    revelacao         = 'O patrimônio mais vulnerável é o que acredita estar protegido. Estruturas sofisticadas quebram silenciosamente quando deixam de ser revisadas.';
+    ctaTitulo         = 'Diagnóstico VIDA Proteção Global';
+    ctaBtn            = 'Iniciar revisão patrimonial →';
+    ctaDesc           = 'O Diagnóstico VIDA Proteção Global identifica em 60 minutos o que sua estrutura atual ainda não enxerga — e o que precisa mudar, em qual ordem.';
+    achado            = 'Estruturas que não são revisadas envelhecem em silêncio. O risco do sofisticado não é ausência de ação — é a ilusão de que o que foi construído ainda protege.';
+    espelhoPergunta   = 'Com a estrutura atual, o que ainda está descoberto?';
+    espelhoLinhasFn   = (v) => [
+      { label:'Risco estate tax (estimativa)',   val: fmtM(v * 0.20 * 0.40), cls:'perda'  },
+      { label:'Adequação legislativa',           val: 'A confirmar',          cls:'alerta' },
+      { label:'Sucessão multijurisdicional',     val: 'Não integrada',        cls:'alerta' },
+      { label:'Revisão necessária',              val: 'Agora',                cls:'alerta' },
+    ];
+
+  } else {
+    identidade        = 'Soberania Patrimonial';
+    nivelAtivo        = 4;
+    desc              = 'Você construiu autonomia. O risco agora tem nome: negligência do sofisticado.';
+    achados = [
+      { i:'✦', t:'Revisão — Lei 14.754/2023',  d:'A legislação mudou. Estruturas montadas antes de 2024 precisam ser revisadas.' },
+      { i:'✦', t:'Sucessão multijurisdicional', d:'O que protege em uma jurisdição pode expor em outra.' },
+      { i:'◎', t:'Integração como sistema',     d:'Internacionalização, sucessão, proteção e liquidez precisam conversar como sistema único — não como camadas paralelas.' },
+    ];
+    revelacao         = 'Soberania patrimonial não se declara. Se mantém. E o intervalo entre revisões é exatamente onde as fragilidades se instalam sem aviso.';
+    ctaTitulo         = 'Diagnóstico VIDA Proteção Global';
+    ctaBtn            = 'Iniciar revisão global →';
+    ctaDesc           = 'O Diagnóstico VIDA Proteção Global é uma revisão de 60 minutos da sua arquitetura global — integração entre jurisdições, adequação legislativa e plano de continuidade.';
+    achado            = 'Soberania patrimonial não é destino — é uma disciplina de revisão contínua. Quem chegou aqui sabe que a negligência do avançado pode custar tanto quanto a inação do início.';
+    espelhoPergunta   = 'Com a complexidade atual, o que ainda não está integrado?';
+    espelhoLinhasFn   = (v) => [
+      { label:'Atualização legislativa',        val: 'A confirmar',    cls:'alerta' },
+      { label:'Integração sucessória global',   val: 'A mapear',       cls:'alerta' },
+      { label:'Revisão periódica',              val: 'Anual',          cls:'neutro' },
+      { label:'Negligência do sofisticado',     val: 'Risco real',     cls:'perda'  },
+    ];
+  }
+
+  // ── montar HTML ──────────────────────────────────────────────────────────
+  const estagioLabels = ['Prisioneiro do Real','Diversificação Cosmética','Patrimônio em Transição','Soberania Patrimonial'];
+  const nivelBarras   = [1,2,3,4].map(n =>
+    `<div class="nivel-estagio ${n <= nivelAtivo ? 'ativo' : ''}"></div>`
+  ).join('');
+  const nivelLabelHtml = `<div class="nivel-labels">
+    ${estagioLabels.map((l,i) =>
+      `<span class="${i+1 === nivelAtivo ? 'nivel-label-destaque' : ''}">${l}</span>`
+    ).join('')}
+  </div>`;
+
+  // achados individuais removidos — substituídos por achado único de ponte
+
+  // Espelho — pré-renderizado com valor padrão R$2M
+  window._espelhoFn = espelhoLinhasFn;
+  const linhasPadrao = espelhoLinhasFn(2000000);
+  const linhasHtml   = linhasPadrao.map(l => `
+    <div class="espelho-linha">
+      <span class="espelho-linha-label">${l.label}</span>
+      <span class="espelho-linha-valor ${l.cls}">${l.val}</span>
+    </div>`).join('');
+
+  return `
+    <div class="res-header">
+      <div class="res-kicker">Sua identidade patrimonial</div>
+      <div class="res-identidade">${identidade}</div>
+      <div class="res-desc">${desc}</div>
+    </div>
+
+    <div class="nivel-area">
+      <div class="nivel-estagios">${nivelBarras}</div>
+      ${nivelLabelHtml}
+    </div>
+
+    ${gerarBussola(nivelAtivo)}
+
+    <div class="espelho">
+      <div class="espelho-kicker">Exposição</div>
+      <div class="espelho-pergunta">${espelhoPergunta}</div>
+      <div class="espelho-input-wrap">
+        <span class="espelho-prefix">R$</span>
+        <input class="espelho-input" id="espelho-val" type="text"
+               placeholder="0.000.000" value="2.000.000"
+               oninput="calcEspelho(this.value)" onfocus="this.select()">
+      </div>
+      <div class="espelho-linhas visivel" id="espelho-linhas">${linhasHtml}</div>
+    </div>
+
+    <div class="revelacao">
+      <div class="revelacao-txt">${revelacao}</div>
+    </div>
+
+    <div class="achado-unico">
+      <div class="achado-unico-txt">${achado}</div>
+    </div>
+
+    <div class="res-cta">
+      <div class="res-cta-titulo">${ctaTitulo}</div>
+      <div class="res-cta-desc">${ctaDesc}</div>
+      <div class="res-preco">R$ 1.297,00 · sessão estratégica de 60 min · mapa de exposição global™</div>
+      <a class="res-cta-btn" href="https://ivanlvianna.github.io/scannerprotecaoglobal/diagnostico-protecao-global.html" target="_blank">Conhecer o diagnóstico →</a>
+      <span class="res-reiniciar" onclick="reiniciar()">Refazer o scanner</span>
+    </div>
+  `;
+}
+
+// ── helpers espelho ──────────────────────────────────────────────────────
+function fmtM(n) {
+  if (n >= 1000000) return 'R$ ' + (n / 1000000).toFixed(2).replace('.', ',') + 'M';
+  if (n >= 1000)    return 'R$ ' + Math.round(n / 1000) + 'k';
+  return 'R$ ' + Math.round(n).toLocaleString('pt-BR');
+}
+function parseBRL(str) {
+  return parseFloat(str.replace(/\./g, '').replace(',', '.')) || 0;
+}
+function calcEspelho(rawVal) {
+  const v  = parseBRL(rawVal);
+  if (!v || !window._espelhoFn) return;
+  const linhas  = window._espelhoFn(v);
+  const valores = document.querySelectorAll('#espelho-linhas .espelho-linha-valor');
+  linhas.forEach((l, i) => {
+    if (valores[i]) {
+      valores[i].textContent = l.val;
+      valores[i].className   = 'espelho-linha-valor ' + l.cls;
+    }
+  });
+}
+
+function reiniciar() {
+  Object.keys(respostas).forEach(k => delete respostas[k]);
+  document.getElementById('area-resultado').style.display = 'none';
+  document.getElementById('area-calc').style.display = 'none';
+  document.getElementById('prog-wrap').style.display = 'block';
+  document.getElementById('area-perguntas').style.display = 'block';
+  document.querySelectorAll('.opcao').forEach(o => o.classList.remove('selecionada'));
+  document.querySelectorAll('.btn-prox').forEach(b => { if (b.id !== 'btn-iniciar') b.classList.remove('habilitado'); });
+  mostrarPergunta(1);
+  atualizarProg(1);
+  document.querySelector('.wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>
